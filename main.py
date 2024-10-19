@@ -1,6 +1,8 @@
 import pygame
 from car import Car
 from detect import detect_collision, detect_nearby_car
+from road import draw_road
+from config import cars
 
 # 초기화
 pygame.init()
@@ -8,30 +10,6 @@ pygame.init()
 # 화면 설정
 screen_width, screen_height = 800, 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-
-# 색상 설정
-WHITE = (255, 255, 255)
-GRAY = (169, 169, 169)
-YELLOW = (255, 255, 0)
-
-# 도로 경계 설정
-lane_top, lane_bottom = 100, 500
-lane_left, lane_right = 300, 500
-
-# 도로 그리기 함수
-def draw_road():
-    pygame.draw.rect(screen, GRAY, (lane_left, lane_top, lane_right - lane_left, lane_bottom - lane_top))  # 차도
-    pygame.draw.line(screen, YELLOW, (lane_left, lane_top), (lane_left, lane_bottom), 5)  # 왼쪽 경계선
-    pygame.draw.line(screen, YELLOW, (lane_right, lane_top), (lane_right, lane_bottom), 5)  # 오른쪽 경계선
-    pygame.draw.line(screen, WHITE, ((lane_left + lane_right) // 2, lane_top),
-                     ((lane_left + lane_right) // 2, lane_bottom), 5)  # 중앙 차선
-
-# 자동차 리스트 생성 (초기 위치와 속도 설정)
-cars = [
-    Car(350, 480, (0, 0, 255), 0, 0.5, is_autonomous=True),  # 자율주행 자동차
-    Car(380, 300, (255, 0, 0), 0, 0.2),  # 일반 자동차
-    Car(370, 260, (255, 0, 0), 0, 0.3),  # 일반 자동차 추가
-]
 
 # 메인 루프
 running = True
@@ -41,10 +19,10 @@ while running:
             running = False
 
     # 화면 초기화
-    screen.fill(WHITE)
+    screen.fill((255, 255, 255))
 
     # 도로 그리기
-    draw_road()
+    draw_road(screen)
 
     # 자동차 움직임 업데이트 및 그리기
     for car in cars:
