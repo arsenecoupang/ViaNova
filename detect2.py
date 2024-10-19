@@ -59,18 +59,16 @@ def distance(pos1, pos2):
 
 # 충돌 감지 함수
 def detect_collision(car, other_cars):
-    car_center = (car.pos[0] + car.width // 2, car.pos[1] + car.height // 2)
+    car_rect = pygame.Rect(car.pos[0], car.pos[1], car.width, car.height)
 
     for other_car in other_cars:
-        other_car_center = (other_car.pos[0] + other_car.width // 2, other_car.pos[1] + other_car.height // 2)
-        dist = distance(car_center, other_car_center)
+        other_car_rect = pygame.Rect(other_car.pos[0], other_car.pos[1], other_car.width, other_car.height)
 
-        # 충돌 감지 (충돌 범위 내)
-        if dist < (car.width // 2 + other_car.width // 2):
-            return True, dist
+        # 충돌 감지 (사각형의 겹침 여부)
+        if car_rect.colliderect(other_car_rect):
+            return True, car_rect.collidepoint(other_car.pos[0] + other_car.width // 2, other_car.pos[1] + other_car.height // 2)
 
     return False, None
-
 
 # 가까운 차의 거리 및 방향 감지 함수 (레이더 범위 안에 있을 때만 감지)
 def detect_nearby_car(car, other_cars):
@@ -118,10 +116,9 @@ def draw_road():
 # 자동차 리스트 생성 (초기 위치와 속도 설정)
 cars = [
     Car(350, 480, BLUE, 0, 0.5, is_autonomous=True),  # 자율주행 자동차
-    Car(380, 400, RED, 0, 0.3),  # 일반 자동차
-    Car(360, 360, RED, 0, 0.2),  # 일반 자동차 추가
+    Car(380, 300, RED, 0, 0.2),  # 일반 자동차
+    Car(370, 260, RED, 0, 0.3),  # 일반 자동차 추가
 ]
-
 # 메인 루프
 running = True
 while running:
