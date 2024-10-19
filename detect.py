@@ -1,6 +1,6 @@
 import pygame
 import math
-
+# finish the code below
 # 초기화
 pygame.init()
 
