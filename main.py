@@ -45,7 +45,7 @@ while running:
     # 출력: 충돌 또는 거리/방향 정보
     headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
     if collision_status:
-        requests.post('http://localhost:5000/update', data={'message': "충돌 발생!"}, headers=headers)
+            requests.post('http://localhost:5000/update', data={'message': "충돌 발생!"}, headers=headers)
     elif radar_in_cars:
         for dist, direction in radar_in_cars:
             requests.post('http://localhost:5000/update', data={'message': f"{dist:.2f}m에 {direction}에 차량이 있습니다."}, headers=headers)

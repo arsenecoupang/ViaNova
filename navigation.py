@@ -10,21 +10,21 @@ nav_screen_width, nav_screen_height = 600, 300
 nav_screen = pygame.display.set_mode((nav_screen_width, nav_screen_height))
 
 def navishow_text(messages):
-    font = pygame.font.SysFont('applesdgothicneo', 36)
-    y_offset = 50
+    font = pygame.font.SysFont('nanumgothic', 36)
+    y_offset = 100
     # Get the last message
     if messages:
         message = messages[-1]
         text_surface = font.render(message, True, (0, 0, 0))
-        nav_screen.blit(text_surface, (10, y_offset))
+        nav_screen.blit(text_surface, (170, y_offset))
 def navishow_emergency():
-    font = pygame.font.SysFont('applesdgothicneo', 36)
+    font = pygame.font.SysFont('nanumgothic', 36)
     text_surface = font.render("긴급 상황 발생!", True, (255, 0, 0))
-    nav_screen.blit(text_surface, (10, 50))
+    nav_screen.blit(text_surface, (130, 50))
 def navishow_human_detected():
-    font = pygame.font.SysFont('applesdgothicneo', 36)
+    font = pygame.font.SysFont('nanumgothic', 36)
     text_surface = font.render("사람 감지됨!", True, (255, 0, 0))
-    nav_screen.blit(text_surface, (10, 50))
+    nav_screen.blit(text_surface, (130, 50))
 # 메인 루프
 running = True
 while running:
@@ -34,9 +34,9 @@ while running:
 
     # 화면 초기화
     nav_screen.fill((255, 255, 255))  # 하얀색 배경
-    font = pygame.font.SysFont('applesdgothicneo', 36)
-    title = font.render("ViaNova 네비게이션 Navigation System", True, (0, 0, 0))
-    nav_screen.blit(title, (10, 10))  # 텍스트를 화면에 그리기
+    font = pygame.font.SysFont('nanumgothic', 36)
+    title = font.render("ViaNova Navigation", True, (0, 0, 0))
+    nav_screen.blit(title, (130, 10))  # 텍스트를 화면에 그리기
 
     # Fetch message from server
     response = requests.get('http://localhost:5000/message')
