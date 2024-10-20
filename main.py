@@ -2,11 +2,10 @@
 import pygame
 import requests
 
-from car import Car
-from carMove_auto import movingAuto
-from detect import detect_collision, detect_nearby_car
-from road import draw_road
-from config import cars
+from autoMove.carMove_auto import movingAuto
+from autoMove.detect import detect_collision, detect_nearby_car
+from noChanges.road import draw_road
+from noChanges.config import cars
 import shared_state
 
 # 초기화

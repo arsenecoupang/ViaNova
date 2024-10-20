@@ -1,5 +1,5 @@
 import pygame
-from carMove_auto import movingAuto
+from autoMove.carMove_auto import movingAuto
 
 class Car:
     def __init__(self, x, y, color, vel_x, vel_y, is_autonomous=False):
