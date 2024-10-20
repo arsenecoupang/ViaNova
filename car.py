@@ -1,3 +1,4 @@
+# car.py
 import pygame
 from autoMove.carMove_auto import movingAuto
 
@@ -9,6 +10,12 @@ class Car:
         self.width = 30
         self.height = 50
         self.is_autonomous = is_autonomous
+        self.nearest_distance = None
+        self.direction_to_nearest = None
+        self.car_up = False
+        self.car_down = False
+        self.car_left = False
+        self.car_right = False
 
     def drawcar(self, screen):
         pygame.draw.rect(screen, self.color, (*self.pos, self.width, self.height))
@@ -19,12 +26,10 @@ class Car:
 
     def update(self):
         if self.is_autonomous:
-            if self.vel[0] >= 0:
-                self.pos[1] -= self.vel[1] + movingAuto('y')
-                self.pos[0] -= self.vel[0] + movingAuto('x')
-            else:
-                self.pos[1] -= self.vel[1]
-                self.pos[0] -= self.vel[0]
+            move_x = movingAuto('x', self)
+            move_y = movingAuto('y', self)
+            self.pos[1] += self.vel[1] + move_y
+            self.pos[0] += self.vel[0] + move_x
         else:
             self.pos[1] -= self.vel[1]
             self.pos[0] -= self.vel[0]

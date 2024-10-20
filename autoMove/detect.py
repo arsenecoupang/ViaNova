@@ -22,6 +22,7 @@ def detect_collision(car, other_cars):
     return False, None
 
 # 가까운 차의 거리 및 방향 감지 함수 (레이더 범위 안에 있을 때만 감지)
+# detect.py
 def detect_nearby_car(car, other_cars):
     car_center = (car.pos[0] + car.width // 2, car.pos[1] + car.height // 2)
     nearest_car = None
