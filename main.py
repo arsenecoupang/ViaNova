@@ -1,6 +1,7 @@
+# main.py
 import pygame
 from car import Car
-from detect import detect_collision, detect_nearby_car
+from detect import detect_collision, detect_nearby_car, detect_radar_in_car
 from road import draw_road
 from config import cars
 
@@ -35,12 +36,14 @@ while running:
 
     # 가까운 차의 거리 및 방향 정보 감지 (레이더 범위 안에 있을 때만)
     nearest_distance, direction_to_nearest = detect_nearby_car(cars[0], cars[1:])
+    radar_in_cars = detect_radar_in_car(cars[0], cars[1:])
 
     # 출력: 충돌 또는 거리/방향 정보
     if collision_status:
         print(f"충돌 발생!")
-    elif nearest_distance:
-        print(f"전방 {nearest_distance:.2f}m에 {direction_to_nearest}에 차량이 있습니다.")
+    elif radar_in_cars:
+        for dist, direction in radar_in_cars:
+            print(f"{dist:.2f}m에 {direction}에 차량이 있습니다.")
     else:
         print("감지된 차량 없음")
 

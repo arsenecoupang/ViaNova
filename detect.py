@@ -17,6 +17,28 @@ def detect_collision(car, other_cars):
             return True, car_rect.collidepoint(other_car.pos[0] + other_car.width // 2, other_car.pos[1] + other_car.height // 2)
 
     return False, None
+def detect_radar_in_car(car, other_cars):
+    car_center = (car.pos[0] + car.width // 2, car.pos[1] + car.height // 2)
+    detected_cars = []
+
+    for other_car in other_cars:
+        other_car_center = (other_car.pos[0] + other_car.width // 2, other_car.pos[1] + other_car.height // 2)
+        dist = distance(car_center, other_car_center)
+
+        if dist <= 100:  # Only consider cars within radar range
+            direction = ""
+            if other_car_center[0] > car_center[0]:
+                direction = "오른쪽"
+            elif other_car_center[0] < car_center[0]:
+                direction = "왼쪽"
+            if other_car_center[1] > car_center[1]:
+                direction = "아래쪽"
+            elif other_car_center[1] < car_center[1]:
+                direction = "위쪽"
+
+            detected_cars.append((dist, direction))
+
+    return detected_cars
 
 # 가까운 차의 거리 및 방향 감지 함수 (레이더 범위 안에 있을 때만 감지)
 def detect_nearby_car(car, other_cars):

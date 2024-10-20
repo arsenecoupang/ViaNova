@@ -17,13 +17,7 @@ class Car:
         if self.is_autonomous:  # 자율주행차만 레이더를 그림
             pygame.draw.circle(screen, (0, 255, 0), (int(self.pos[0] + self.width // 2), int(self.pos[1] + self.height // 2)),
                                100, 1)
-
     def update(self):
         # 위-아래 방향으로만 주행
         self.pos[1] -= self.vel[1]
 
-        # 차선을 벗어나지 않도록 Y축 위치를 제한
-        if self.pos[1] < 100:
-            self.pos[1] = 100
-        elif self.pos[1] + self.height > 500:
-            self.pos[1] = 500 - self.height
