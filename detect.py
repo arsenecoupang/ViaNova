@@ -1,6 +1,9 @@
 import math
 import pygame
 
+from shared_state import direction_to_nearest
+
+
 # 두 물체의 거리 계산
 def distance(pos1, pos2):
     return math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2)
@@ -25,6 +28,12 @@ def detect_nearby_car(car, other_cars):
     nearest_distance = 101  # 레이더 범위보다 큰 초기값
     direction = ""
 
+    # 방향별 차 존재 여부를 저장하는 변수
+    car_up = False
+    car_down = False
+    car_left = False
+    car_right = False
+
     for other_car in other_cars:
         other_car_center = (other_car.pos[0] + other_car.width // 2, other_car.pos[1] + other_car.height // 2)
         dist = distance(car_center, other_car_center)
@@ -35,17 +44,26 @@ def detect_nearby_car(car, other_cars):
                 nearest_distance = dist
                 nearest_car = other_car
 
-            # 방향 설정
+            # 방향별로 차가 있는지 확인
             if other_car_center[0] > car_center[0]:  # 오른쪽에 있는 경우
-                direction = "오른쪽"
+                car_right = True
             elif other_car_center[0] < car_center[0]:  # 왼쪽에 있는 경우
-                direction = "왼쪽"
+                car_left = True
             if other_car_center[1] > car_center[1]:  # 아래쪽에 있는 경우
-                direction = "아래쪽"
+                car_down = True
             elif other_car_center[1] < car_center[1]:  # 위쪽에 있는 경우
-                direction = "위쪽"
+                car_up = True
 
+    # 가장 가까운 차량이 있을 때 방향 결정
     if nearest_car:
-        return nearest_distance, direction
+        if car_right:
+            direction = "오른쪽"
+        elif car_left:
+            direction = "왼쪽"
+        if car_down:
+            direction = "아래쪽"
+        elif car_up:
+            direction = "위쪽"
+        return nearest_distance, direction, car_up, car_down, car_left, car_right
     else:
-        return None, None
+        return None, None, car_up, car_down, car_left, car_right

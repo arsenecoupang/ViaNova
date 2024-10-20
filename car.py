@@ -19,10 +19,15 @@ class Car:
 
     def update(self):
         if self.is_autonomous:
-            self.pos[1] -= self.vel[1] + movingAuto('y')
-            self.pos[0] -= self.vel[0] + movingAuto('x')
+            if self.vel[0] >= 0:
+                self.pos[1] -= self.vel[1] + movingAuto('y')
+                self.pos[0] -= self.vel[0] + movingAuto('x')
+            else:
+                self.pos[1] -= self.vel[1]
+                self.pos[0] -= self.vel[0]
         else:
             self.pos[1] -= self.vel[1]
+            self.pos[0] -= self.vel[0]
 
         if self.pos[1] < 100:
             self.pos[1] = 100
