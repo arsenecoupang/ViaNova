@@ -1,12 +1,12 @@
+# detect.py
 import math
 import pygame
 
 from shared_state import direction_to_nearest
 
-
 # 두 물체의 거리 계산
 def distance(pos1, pos2):
-    return math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2)
+    return math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos2[1] - pos2[1]) ** 2)
 
 # 충돌 감지 함수
 def detect_collision(car, other_cars):
