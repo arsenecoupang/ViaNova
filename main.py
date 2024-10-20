@@ -1,9 +1,11 @@
 import pygame
 from car import Car
+from carMove_auto import movingAuto
 from detect import detect_collision, detect_nearby_car
 from road import draw_road
 from config import cars
 import shared_state
+import carMove_auto
 
 # 초기화
 pygame.init()
@@ -42,6 +44,7 @@ while running:
         print(f"충돌 발생!")
     elif shared_state.nearest_distance:
         print(f"전방 {shared_state.nearest_distance:.2f}m에 {shared_state.direction_to_nearest}에 차량이 있습니다.")
+        print(f"move_x: {movingAuto('x')}, move_y: {movingAuto('y')}, vel_x: {cars[0].vel[0]}, vel_y: {cars[0].vel[1]}")
     else:
         print("감지된 차량 없음")
 

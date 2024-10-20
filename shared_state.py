@@ -1,3 +1,3 @@
 # shared_state.py
-nearest_distance = None
-direction_to_nearest = None
+nearest_distance = 0
+direction_to_nearest = 0
