@@ -42,15 +42,17 @@ while running:
     nearest_distance, direction_to_nearest, car_up, car_down, car_left, car_right = detect_nearby_car(cars[0], cars[1:])
     radar_in_cars = detect_radar_in_car(cars[0], cars[1:])
 
-    # 출력: 충돌 또는 거리/방향 정보
-    headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
+    # 출력: 충돌 또는 거리/방향 정보 및 각 방향에 차량이 있는지 여부
     if collision_status:
-            requests.post('http://localhost:5000/update', data={'message': "충돌 발생!"}, headers=headers)
-    elif radar_in_cars:
-        for dist, direction in radar_in_cars:
-            requests.post('http://localhost:5000/update', data={'message': f"{dist:.2f}m에 {direction}에 차량이 있습니다."}, headers=headers)
+        print(f"충돌 발생!")
+    elif shared_state.nearest_distance:
+        print(f"전방 {shared_state.nearest_distance:.2f}m에 {shared_state.direction_to_nearest}에 차량이 있습니다.")
+        print(f"move_x: {movingAuto('x')}, move_y: {movingAuto('y')}, vel_x: {cars[0].vel[0]}, vel_y: {cars[0].vel[1]}")
+
+        # 각 방향에 차량이 있는지 여부 출력
+        print(f"차량 감지 - 위쪽: {shared_state.car_up}, 아래쪽: {shared_state.car_down}, 왼쪽: {shared_state.car_left}, 오른쪽: {shared_state.car_right}")
     else:
-        requests.post('http://localhost:5000/update', data={'message': "감지된 차량 없음"}, headers=headers)
+        print("감지된 차량 없음")
 
     # 화면 업데이트
     pygame.display.flip()
