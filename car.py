@@ -1,4 +1,5 @@
 import pygame
+from carMove_auto import move_x, move_y
 
 # 자동차 클래스
 class Car:
@@ -20,7 +21,8 @@ class Car:
 
     def update(self):
         # 위-아래 방향으로만 주행
-        self.pos[1] -= self.vel[1]
+        self.pos[1] -= self.vel[1] + move_y
+        self.pos[0] += move_x
 
         # 차선을 벗어나지 않도록 Y축 위치를 제한
         if self.pos[1] < 100:
