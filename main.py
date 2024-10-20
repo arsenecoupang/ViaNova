@@ -1,9 +1,10 @@
 # main.py
 import pygame
+import requests
 from car import Car
 from detect import detect_collision, detect_nearby_car, detect_radar_in_car
 from road import draw_road
-from config import cars
+from config import cars # Import the function
 
 # 초기화
 pygame.init()
@@ -11,6 +12,9 @@ pygame.init()
 # 화면 설정
 screen_width, screen_height = 800, 600
 screen = pygame.display.set_mode((screen_width, screen_height))
+
+# 폰트 초기화
+font = pygame.font.SysFont('applegothicttf', 36)
 
 # 메인 루프
 running = True
@@ -39,13 +43,14 @@ while running:
     radar_in_cars = detect_radar_in_car(cars[0], cars[1:])
 
     # 출력: 충돌 또는 거리/방향 정보
+    headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
     if collision_status:
-        print(f"충돌 발생!")
+        requests.post('http://localhost:5000/update', data={'message': "충돌 발생!"}, headers=headers)
     elif radar_in_cars:
         for dist, direction in radar_in_cars:
-            print(f"{dist:.2f}m에 {direction}에 차량이 있습니다.")
+            requests.post('http://localhost:5000/update', data={'message': f"{dist:.2f}m에 {direction}에 차량이 있습니다."}, headers=headers)
     else:
-        print("감지된 차량 없음")
+        requests.post('http://localhost:5000/update', data={'message': "감지된 차량 없음"}, headers=headers)
 
     # 화면 업데이트
     pygame.display.flip()
