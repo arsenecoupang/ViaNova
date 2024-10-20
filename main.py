@@ -39,7 +39,7 @@ while running:
     collision_status, collision_distance = detect_collision(cars[0], cars[1:])
 
     # 가까운 차의 거리 및 방향 정보 감지 (레이더 범위 안에 있을 때만)
-    nearest_distance, direction_to_nearest = detect_nearby_car(cars[0], cars[1:])
+    nearest_distance, direction_to_nearest, car_up, car_down, car_left, car_right = detect_nearby_car(cars[0], cars[1:])
     radar_in_cars = detect_radar_in_car(cars[0], cars[1:])
 
     # 출력: 충돌 또는 거리/방향 정보
