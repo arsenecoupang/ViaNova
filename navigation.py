@@ -16,7 +16,7 @@ def navishow_text(messages):
     if messages:
         message = messages[-1]
         text_surface = font.render(message, True, (0, 0, 0))
-        nav_screen.blit(text_surface, (170, y_offset))
+        nav_screen.blit(text_surface, (10, y_offset))
 def navishow_emergency():
     font = pygame.font.SysFont('nanumgothic', 36)
     text_surface = font.render("긴급 상황 발생!", True, (255, 0, 0))
