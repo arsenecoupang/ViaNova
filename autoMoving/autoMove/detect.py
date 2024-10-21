@@ -1,7 +1,7 @@
 import math
 import pygame
 
-from autoMoving.shared_state import direction_to_nearest
+from ..shared_state import direction_to_nearest
 
 
 # 두 물체의 거리 계산
