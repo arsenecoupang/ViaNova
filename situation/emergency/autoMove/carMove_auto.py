@@ -1,14 +1,14 @@
 # carMove_auto.py
-from autoMoving import shared_state
-import autoMoving.car
-from autoMoving.autoMove.carMove_auto import move_x , move_y
+from autoMoving.autoMove.carMove_auto import move_auto
+network_message = ""
 
-network_message = None : str
+def move_normal(self):
+    if self.network_message == "emergency_coming":
+        if self.pos<=400:
+            move_auto("go_left")
 
-def move_normal(is_emergency : bool, moveValue : str):
-    if network_message == "emergency_coming":
-        if moveValue == 'move_x':
-            return
+        else:
+            move_auto("go_right")
 
 
 
