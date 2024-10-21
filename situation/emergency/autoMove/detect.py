@@ -1,4 +1,7 @@
 # detect.py
+import math
+def distance(pos1, pos2):
+    return math.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2)
 def detect_nearby_car(car, other_cars):
     car_center = (car.pos[0] + car.width // 2, car.pos[1] + car.height // 2)
     nearest_car = None
