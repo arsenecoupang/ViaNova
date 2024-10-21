@@ -1,4 +1,3 @@
-# emergency.py
 import pygame
 import autoMoving.car
 from autoMoving.noChanges.config import emergency_car
@@ -27,7 +26,7 @@ while running:
         car.drawradar(screen)  # 자율주행차만 레이더 표시
     for car in emergency_car:
         if car.is_emergency:
-            nearby_car, _, _, _, _, _, _ = detect_nearby_car(car, [c for c in emergency_car if c != car])
+            nearby_car = detect_nearby_car(car, [c for c in emergency_car if c != car])
             if nearby_car:
                 nearby_car.set_network_message("emergency_coming")
                 move_normal(nearby_car)
