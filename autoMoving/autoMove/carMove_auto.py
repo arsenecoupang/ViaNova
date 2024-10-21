@@ -2,7 +2,7 @@
 from autoMoving import shared_state
 from situation.emergency.autoMove.carMove_auto import move_normal
 
-def movingAuto(direction, give_pos):
+def movingAuto(direction):
     move_x = 0
     move_y = 0
 
