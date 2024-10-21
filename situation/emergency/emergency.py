@@ -1,5 +1,7 @@
 # situation/emergency/emergency.py
 import pygame
+import requests
+
 import autoMoving.car
 from autoMoving.noChanges.config import emergency_car
 from situation.emergency.autoMove.detect import detect_nearby_car
@@ -31,6 +33,8 @@ while running:
             if nearest_car:
                 nearest_car.set_network_message("emergency_coming")
                 move_normal(nearest_car)
+                headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
+                requests.post('http://127.0.0.1:5000/update', data={'message': "emergency!"}, headers=headers)
 
     pygame.display.flip()
 

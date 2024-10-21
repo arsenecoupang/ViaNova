@@ -1,6 +1,5 @@
 # carMove_auto.py
-import shared_state
-
+from autoMoving import shared_state
 def movingAuto(direction):
     move_x = 0
     move_y = 0
