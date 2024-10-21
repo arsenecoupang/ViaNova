@@ -1,6 +1,8 @@
 import math
 import pygame
 
+from shared_state import direction_to_nearest
+
 
 # 두 물체의 거리 계산
 def distance(pos1, pos2):

@@ -1,6 +1,5 @@
 # carMove_auto.py
-from autoMoving import shared_state
-from situation.emergency.autoMove.carMove_auto import move_normal
+import shared_state
 
 def movingAuto(direction):
     move_x = 0
