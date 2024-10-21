@@ -1,14 +1,15 @@
 import pygame
-from autoMove.carMove_auto import movingAuto
+from autoMoving.autoMove.carMove_auto import movingAuto
 
 class Car:
-    def __init__(self, x, y, color, vel_x, vel_y, is_autonomous=False):
+    def __init__(self, x, y, color, vel_x, vel_y, is_autonomous=False,is_emergency=False):
         self.pos = [x, y]
         self.vel = [vel_x, vel_y]
         self.color = color
         self.width = 30
         self.height = 50
         self.is_autonomous = is_autonomous
+        self.is_emergency = is_emergency
 
     def drawcar(self, screen):
         pygame.draw.rect(screen, self.color, (*self.pos, self.width, self.height))
