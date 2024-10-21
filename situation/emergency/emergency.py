@@ -1,7 +1,9 @@
 import pygame
 import autoMoving.car
-
+from autoMoving.noChanges.config import emergency_car
+from autoMoving.autoMove.detect import detect_nearby_car
 from autoMoving.noChanges.road import draw_road
+from situation.emergency.autoMove.carMove_auto import network_message
 
 pygame.init()
 
@@ -18,10 +20,14 @@ while running:
 
     # 도로 그리기
     draw_road(screen)
-    for car in cars:
+    for car in emergency_car:
         car.update()
         car.drawcar(screen)
         car.drawradar(screen)  # 자율주행차만 레이더 표시
+    for car in emergency_car:
+        if car.is_emergency:
+            de
+
     pygame.display.flip()
 
     clock.tick(60)

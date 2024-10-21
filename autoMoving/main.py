@@ -41,7 +41,7 @@ while running:
                 car, [c for c in autoMoving_car if c != car])
             headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
             if collision_status:
-                requests.post('http://localhost:5000/update', data={'message': "충돌 발생!"}, headers=headers)
+                print('충돌 발생!')
             elif car.nearest_distance:
                 requests.post('http://localhost:5000/update', data={'message': f"{car.nearest_distance:.2f}m에 {car.direction_to_nearest}에 차량이 있습니다."})
             else:

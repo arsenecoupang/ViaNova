@@ -1,8 +1,7 @@
 import pygame
 from autoMoving.autoMove.carMove_auto import movingAuto
-
 class Car:
-    def __init__(self, x, y, color, vel_x, vel_y, is_autonomous=False,is_emergency=False):
+    def __init__(self, x, y, color, vel_x, vel_y, is_autonomous=False, is_emergency=False, network_message=None):
         self.pos = [x, y]
         self.vel = [vel_x, vel_y]
         self.color = color
@@ -10,6 +9,7 @@ class Car:
         self.height = 50
         self.is_autonomous = is_autonomous
         self.is_emergency = is_emergency
+        self.network_message = network_message
 
     def drawcar(self, screen):
         pygame.draw.rect(screen, self.color, (*self.pos, self.width, self.height))
@@ -29,3 +29,13 @@ class Car:
         else:
             self.pos[1] -= self.vel[1]
             self.pos[0] -= self.vel[0]
+
+    def car_pos(self, xy: str):
+        if xy == 'x':
+            result = self.pos[0]
+        if xy == 'y':
+            result = self.pos[1]
+        return result
+
+    def set_network_message(self, message):
+        self.network_message = message

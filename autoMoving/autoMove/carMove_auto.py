@@ -2,9 +2,13 @@
 from autoMoving import shared_state
 
 
-def movingAuto(direction):
+def movingAuto(direction, give_pos):
     move_x = 0
     move_y = 0
+    if give_pos == 'move_x':
+        return  move_x
+    elif give_pos == 'move_y':
+        return move_y
 
     if shared_state.nearest_distance is not None and shared_state.nearest_distance <= 60:
         if shared_state.car_up:
