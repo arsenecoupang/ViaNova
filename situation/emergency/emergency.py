@@ -1,7 +1,7 @@
 import pygame
 import autoMoving.car
 from autoMoving.noChanges.config import emergency_car
-from autoMoving.autoMove.detect import detect_nearby_car
+from situation.emergency.autoMove.detect import detect_nearby_car
 from autoMoving.noChanges.road import draw_road
 from situation.emergency.autoMove.carMove_auto import network_message, move_normal
 

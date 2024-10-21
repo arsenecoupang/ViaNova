@@ -2,13 +2,6 @@
 from autoMoving import shared_state
 from situation.emergency.autoMove.carMove_auto import move_normal
 
-def move_auto(direction):
-    move_x = 0
-    move_y =0
-    if direction == 'go_left':
-        move_x -= 0.5
-    if direction == 'go_left':
-        move_x += 0.5
 def movingAuto(direction, give_pos):
     move_x = 0
     move_y = 0
