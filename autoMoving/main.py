@@ -6,8 +6,7 @@ from autoMove.carMove_auto import movingAuto
 from autoMove.detect import detect_collision, detect_nearby_car
 from noChanges.road import draw_road
 from noChanges.config import autoMoving_car as cars
-import shared_state
-
+from autoMoving import shared_state
 # 초기화
 pygame.init()
 
