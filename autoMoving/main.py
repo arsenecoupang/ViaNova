@@ -1,4 +1,3 @@
-# main.py
 import pygame
 import requests
 
@@ -7,6 +6,7 @@ from autoMove.detect import detect_collision, detect_nearby_car
 from noChanges.road import draw_road
 from noChanges.config import autoMoving_car as cars
 from autoMoving import shared_state
+
 # 초기화
 pygame.init()
 
@@ -39,18 +39,24 @@ while running:
     # 가까운 차의 거리 및 방향 정보 감지 (레이더 범위 안에 있을 때만)
     shared_state.nearest_distance, shared_state.direction_to_nearest, shared_state.car_up, shared_state.car_down, shared_state.car_left, shared_state.car_right = detect_nearby_car(
         cars[0], cars[1:])
+
+    # Debug print statements
+    #print(f"nearest_distance: {shared_state.nearest_distance}")
+    #print(f"direction_to_nearest: {shared_state.direction_to_nearest}")
+    #print(f"car_up: {shared_state.car_up}, car_down: {shared_state.car_down}, car_left: {shared_state.car_left}, car_right: {shared_state.car_right}")
+
     headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
     # 출력: 충돌 또는 거리/방향 정보 및 각 방향에 차량이 있는지 여부
     if collision_status:
-        requests.post('http://localhost:5000/update', data={'message': "충돌 발생!"}, headers=headers)
+        requests.post('http://127.0.0.1:5000/update', data={'message': "충돌 발생!"}, headers=headers)
     elif shared_state.nearest_distance:
-        requests.post('http://localhost:5000/update', data={'message': f"{shared_state.nearest_distance:.2f}m에 {shared_state.direction_to_nearest}에 차량이 있습니다."})
-        print(f"move_x: {movingAuto('x')}, move_y: {movingAuto('y')}, vel_x: {cars[0].vel[0]}, vel_y: {cars[0].vel[1]}")
+        requests.post('http://127.0.0.1:5000/update', data={'message': f"{shared_state.nearest_distance:.2f}m에 {shared_state.direction_to_nearest}에 차량이 있습니다."})
+        #print(f"move_x: {movingAuto('x')}, move_y: {movingAuto('y')}, vel_x: {cars[0].vel[0]}, vel_y: {cars[0].vel[1]}")
 
         # 각 방향에 차량이 있는지 여부 출력
         print(f"차량 감지 - 위쪽: {shared_state.car_up}, 아래쪽: {shared_state.car_down}, 왼쪽: {shared_state.car_left}, 오른쪽: {shared_state.car_right}")
     else:
-        requests.post('http://localhost:5000/update', data={'message': "안전합니다!"}, headers=headers)
+        requests.post('http://127.0.0.1:5000/update', data={'message': "안전합니다!"}, headers=headers)
     # 화면 업데이트
     pygame.display.flip()
 
