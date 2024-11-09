@@ -3,7 +3,9 @@ import requests
 import time
 
 from pygame.examples.cursors import image
+import os
 
+os.environ['SDL_VIDEO_WINDOW_POS'] = "0,0"
 # 초기화
 pygame.init()
 

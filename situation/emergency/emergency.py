@@ -7,6 +7,9 @@ from autoMoving.noChanges.config import emergency_car
 from situation.emergency.autoMove.detect import detect_nearby_car
 from autoMoving.noChanges.road import draw_road
 from situation.emergency.autoMove.carMove_auto import network_message, move_normal
+import os
+
+os.environ['SDL_VIDEO_WINDOW_POS'] = "600,200"
 
 pygame.init()
 

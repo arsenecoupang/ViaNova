@@ -6,7 +6,9 @@ from autoMove.detect import detect_collision, detect_nearby_car
 from noChanges.road import draw_road
 from noChanges.config import autoMoving_car as cars
 from autoMoving import shared_state
+import os
 
+os.environ['SDL_VIDEO_WINDOW_POS'] = "600,200"
 # 초기화
 pygame.init()
 
